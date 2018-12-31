@@ -1,0 +1,15 @@
+  public static void main(String[] args) throws Exception{
+   File file = new File("C:"+File.separator+"Users"+File.separator+"Administrator"+File.separator+"Desktop"+File.separator+"Test.txt");
+   OutputStream out = null;
+        try {
+            out = new FileOutputStream(file,true);
+        String msg = "Java";
+        out.write(msg.getBytes());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            out.close();
+            }
+    }
