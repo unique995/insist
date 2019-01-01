@@ -1,0 +1,52 @@
+class Person1{
+    private String name;
+    private int age;
+    public Person1(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(!(obj instanceof Person1)){
+            return false;
+        }
+        //向下转型为Person1对象比较属性
+        Person1 per = (Person1) obj;
+
+        return this.age == per.age && name.equals(per.name);
+    }
+
+
+    @Override
+    public String toString() {
+        return "Person1{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+
+}
+public class Collect {
+    public static void main(String[] args) {
+    List<Person1> list = new ArrayList<>();
+        Person1 per1 = new Person1("zhang",18);
+        Person1 per2 = new Person1("wang",21);
+        Person1 per3 = new Person1("li",23);
+        list.add(per1);
+        list.add(per2);
+        list.add(per2);
+        System.out.println(list.contains(new Person1("wang",21)));
+        System.out.println(list.contains(per2));
+
+
+
+    }
+}
