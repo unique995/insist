@@ -1,0 +1,66 @@
+struct ComplexNode{
+    int data;
+    struct ComplexNode *next;
+    struct ComplexNode*random;
+};
+ComplexNode * CreateNode(int data)
+{
+    ComplexNode *node = (ComplexNode *)malloc(sizeof(ComplexNode ));
+    node->data = data;
+    node->random = node->next = NULL;
+    return node;
+}
+
+ComplexNode *ComplexNodeInit()
+{
+    ComplexNode *n1 = CreateNode(1);
+    ComplexNode *n2 = CreateNode(2);
+    ComplexNode *n3 = CreateNode(3);
+    ComplexNode *n4 = CreateNode(4);
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+    n1->random = n3;
+    n2->random = n1;
+    n3->random = n3;
+    return n1;
+}
+ //复制链表每个节点，让新的节点跟在之前链表的节点后面
+    ComplexNode  *cur = list;
+    ComplexNode *newNode;
+    //cur只遍历之前链表的节点
+    while (cur != NULL){
+         newNode = CreateNode(cur->data);
+         newNode->next = cur->next;
+         cur->next = newNode;
+         cur = newNode->next;
+    }
+//复制random 字段
+    cur = list;
+    while (cur != NULL){
+         newNode = cur->next;
+         if (cur->random != NULL){
+             newNode->random = cur->random->next;
+         }
+         else{
+             newNode->random = NULL;
+         }
+         cur = cur->next->next;
+    }
+//拆开
+    cur = list;
+    ComplexNode *next, *newNext;
+    ComplexNode *result = list->next;
+    while (cur != NULL){
+         newNode = cur->next;
+         next = newNode->next;
+         if (next == NULL){
+             newNext = NULL;
+         }
+         else{
+             newNext = next->next;
+         }
+         cur->next = next;
+         newNode->next = newNext;
+         cur = next;
+    }
