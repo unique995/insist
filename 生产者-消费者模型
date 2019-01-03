@@ -1,0 +1,88 @@
+//商品类
+class Goods{
+    private String goodName;
+    private  int count;
+//生产商品方法
+    public synchronized void set(String goodName){
+        //while
+        if(count > 0){
+            System.out.println("商品还有呐");
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        this.goodName = goodName;
+        this.count++;
+        System.out.println(Thread.currentThread().getName()+"生产"+goodName+toString());
+        //唤醒等待消费的库存
+        notify();
+        //notifyAll();
+    }
+    //消费商品方法
+    public synchronized void get(){
+        //while
+        if(count == 0){
+            System.out.println("卖完啦~");
+            try {
+                //等待商品生产
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        this.count--;
+        System.out.println(Thread.currentThread().getName()+"消费"+goodName+toString());
+        //唤醒生产者生产
+        notify();
+        //notifyAll();
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodName='" + goodName + '\'' +
+                ", count=" + count +
+                '}';
+    }
+}
+//生产线程
+class Producer implements Runnable{
+    private Goods goods;
+    public Producer(Goods goods){
+        this.goods = goods;
+    }
+    public void run(){
+        //while(true){
+            goods.set("牛排");
+        //}
+
+    }
+}
+//消费线程
+class Consumer implements Runnable{
+    private Goods goods;
+    public Consumer(Goods goods){
+        this.goods = goods;
+    }
+    public void run(){
+        //while(true){
+            goods.get();
+        //}
+
+    }
+}
+class Test{
+    public static void main(String[] args) {
+        Goods good = new Goods();//同一个对象
+        Thread mythread = new Thread(new Producer(good),"生产者");
+        Thread mythread1 = new Thread(new Consumer(good),"消费者");
+        mythread.start();
+        mythread1.start();
+//        List<Thread> list = new ArrayList<>();
+//        for (int i = 0;i<10;i++){
+//            Thread thread new Thread(new Consumer(good),"xiaofeiz"+i);
+//        }
+    }
+}
