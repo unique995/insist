@@ -1,0 +1,49 @@
+int Merge(int arr[], int left, int mid, int right,int extra[])
+{
+    int left_i = left;//[left,mid)
+    int right_i = mid;//[mid,right)
+    int extra_i = left;
+    while (left_i < mid && right_i < right){
+         if (arr[left_i] <= arr[right_i]){
+             extra[extra_i++] = arr[left_i++];
+         }
+         else{
+             extra[extra_i++] = arr[right_i++];
+         }
+    }
+    while (left_i < mid){
+         extra[extra_i++] = arr[left_i++];
+    }
+    while (right_i < right){
+         extra[extra_i++] = arr[right_i++];
+    }
+    int i;
+    for (i = left; i < right; i++)
+    {
+         arr[i] = extra[i];
+    }
+}
+void _MergeSort(int arr[], int left,int right,int extra[])
+{
+    if (left == right - 1)
+    {
+         return;//区间内只剩一个数
+    }
+    if (left > right)
+    {
+         return;//没有数
+    }
+    //[left,right)
+    //[left,mid)
+    //[mid,right)
+    int mid = left + (right - left) / 2;
+    _MergeSort(arr, left, mid,extra);
+    _MergeSort(arr, mid, right,extra);
+    Merge(arr, left,mid, right,extra);
+}
+void MergeSort(int arr[], int size)
+{
+    int *extra = (int *)malloc(sizeof(int)* size);
+    _MergeSort(arr, 0, size,extra);
+    free(extra);
+}
