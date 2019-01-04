@@ -1,0 +1,8 @@
+public class Test {
+public static void main(String[] args) {
+Properties properties = new Properties() ;
+properties.setProperty("XA","Xi'An") ;
+properties.setProperty("SH","ShangHai") ;
+System.out.println(properties.get("XA")) ;
+System.out.println(properties.get("sh")) ;
+}
