@@ -1,0 +1,35 @@
+//1
+public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list,"java","C++","Python","PHP");
+        //实例化对象
+        Stream<String> stream = list.stream();
+        //统计带有java的个数
+        System.out.println(stream.filter((e)->e.contains("java")).count());
+    }
+    
+    
+//2    
+public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list,"java","C++","Python","PHP");
+        //实例化对象
+        Stream<String> stream = list.stream();
+        //收集过滤后的数据
+       // System.out.println(stream.filter((e)->e.contains("java")).collect(Collectors.toList()));
+    List<String> resultList = stream.filter((e)->e.contains("java")).collect(Collectors.toList());
+        System.out.println(resultList);
+   
+   }  
+   
+   
+   //3
+   //跳过0个，取1个
+   public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list,"java","C++","Python","PHP");
+        //实例化对象
+        Stream<String> stream = list.stream();
+        List<String> resultList = stream.skip(0).limit(1).map((s)->s.toUpperCase()).collect(Collectors.toList());
+        System.out.println(resultList);
+    }
