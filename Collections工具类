@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+        //List
+        List<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("C++");
+        list.add("Python");
+        list.add("PHP");
+        
+        System.out.println("原始顺序：" + list);
+        
+        //乱续
+//        Collections.shuffle(list);
+//        System.out.println("乱续的结果："+list);
+        
+        //反转
+//        Collections.reverse(list);
+//        System.out.println("反转的结果："+list);
+        
+        //填充
+//        Collections.fill(list, "--");
+//        System.out.println("填充的结果：" + list);
+        
+        //集合变成线程安全的集合
+        //List<String> safeList = Collections.synchronizedList(list);
+        
+        //集合变成不可变集合
+//        list = Collections.unmodifiableList(list);
+        //list.add("DS");//UnsupportedOperationException
+    }
