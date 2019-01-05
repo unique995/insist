@@ -1,0 +1,20 @@
+
+//将属性输出到文件
+public class Test {
+public static void main(String[] args) throws IOException {
+Properties properties = new Properties() ;
+properties.setProperty("xa","Xi'An") ;
+properties.setProperty("sh","ShangHai") ;
+File file = new File("C:\\Users\\Administrator\\Desktop\\test.properties") ;
+properties.store(new FileOutputStream(file),"testProperties") ;
+}
+}
+
+
+
+//通过属性文件读取内容
+Properties properties = new Properties() ;
+        File file = new File("C:\\Users\\Administrator\\Desktop\\test.properties") ;
+        properties.load(new FileInputStream(file)) ;
+        System.out.println(properties.getProperty("xa")) ;
+
