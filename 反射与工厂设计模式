@@ -1,0 +1,36 @@
+interface IFruit{
+    public void eat();
+}
+class Apple implements IFruit{
+    public void eat(){
+        System.out.println("eat an apple");
+    }
+}
+class Pear implements IFruit{
+    public void eat(){
+        System.out.println("eat a pear");
+    }
+}
+
+class Factory{
+    private Factory(){}
+    public static IFruit getInstance(String className){
+        IFruit fruit = null;
+        try {
+            //取得任意子类反射对象
+            Class<?> cls = Class.forName(className);
+            //通过反射取得实例化对象
+            fruit = (IFruit) cls.newInstance();
+        } catch (ClassNotFoundException |IllegalAccessException|InstantiationException e) {
+
+            e.printStackTrace();
+        }
+        return fruit;
+    }
+}
+public class fanshe {
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        IFruit fruit = Factory.getInstance("www.bit.java.Apple");
+        fruit.eat();
+    }
+}
