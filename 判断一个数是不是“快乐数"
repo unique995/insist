@@ -1,0 +1,32 @@
+public class Test {
+    public boolean isHappy(int n) {
+        while (true) {
+            int flag = getNext(n);
+            if (flag == 1) {
+                return true;
+            } else {
+                n = flag;
+                if (n == 89) {
+                    return false;
+                }
+            }
+        }
+    }
+
+
+    public int getNext(int num){//取得各个位上，数的平方和
+        int result = 0;
+        result = result+((num%10)*(num%10));
+        num = num / 10;
+        if(num == 0){
+            return result;
+        }else{
+            return result + getNext(num);
+        }
+    }
+    public static void main(String[] args) {
+        Test A = new Test();
+        System.out.println(A.isHappy(19));
+
+    }
+}
