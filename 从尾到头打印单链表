@@ -1,0 +1,40 @@
+class ListNode{
+    int data;
+    ListNode next;
+}
+public class Link {
+
+    public static void PrintFromTailToHead(ListNode first){
+        ListNode cur = null;
+        ListNode end = null;
+        while(end != first){  // 找到要打印的节点
+            cur = first;
+            while(cur.next != end){
+                cur = cur.next;
+            }
+            System.out.println(cur.data);
+            end = cur;            //end往前走
+        }
+    }
+    public static void DiGui(ListNode head){//递归方式
+        if(head != null){
+            DiGui(head.next);
+            System.out.println(head.data);
+        }
+    }
+    public static void main(String[] args) {
+        ListNode n1 = new ListNode();
+        ListNode n2 = new ListNode();
+        ListNode n3 = new ListNode();
+        ListNode n4 = new ListNode();
+        n1.data = 1;
+        n2.data = 2;
+        n3.data = 3;
+        n4.data = 4;
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        PrintFromTailToHead(n1);
+        DiGui(n1);
+    }
+}
