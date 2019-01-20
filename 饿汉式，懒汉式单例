@@ -1,0 +1,21 @@
+//饿汉式单例(不管用不用，一上来就产生)
+calss Singleton{
+//类内部提供实例化对象
+private static final Singleton SINGLETON = new singleton();
+//构造方法私有化，类外部无法产生实例化对象
+private Singleton() {}
+//对象方法
+public static Singleton getSingleton(){
+return SINGLETON;
+}
+//懒汉式单例：用时再new（双重加锁时）
+class Singleton {
+private static Singleton SINGLETON;
+private Singleton() {};
+public static Singleton getSingleton() {
+if (SINGLETON == null) {
+SINGLETON = new Singleton();
+}
+return SINGLETON;
+}
+}
