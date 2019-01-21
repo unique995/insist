@@ -1,0 +1,35 @@
+ public static void main(String[] args) throws Exception{
+ //////////////////图案
+       int line = 10;
+       for (int x = 0;x < line;x++){
+           for (int y = 0;y < line-x;y++){
+               System.out.print(" ");
+           }
+           for(int z = 0;z < x;z++){
+               System.out.print("* ");
+           }
+     System.out.println();
+      }
+
+
+////////////乘法表
+        for(int i = 1;i <= 9;i++){
+            for(int j = 1;j <= i;j++){
+                System.out.print(i+"*"+j+"="+i*j+" ");
+            }
+            System.out.println("\t");
+        }
+    }
+    
+    
+    //////////递归求阶乘
+    public static void main(String[] args) throws Exception{
+        System.out.println(fun(3));
+    }
+    public static long fun(int num){
+        if (num == 1) {
+            return 1;
+        }else {
+            return num*fun(num-1);
+        }
+    }
