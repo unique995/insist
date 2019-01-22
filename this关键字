@@ -1,0 +1,38 @@
+////////////this表示本类属性
+class Person{
+private String name;
+private int age;
+public Person(String name,int age){
+this.name = name ;
+this.age = age ;
+
+}
+public String getPersonInfo(){
+return "姓名：" + name + ",年龄："+age;
+}
+}
+public class Test{
+public static void main(String[] args) {
+Person per = new Person("张三",20);
+System.out.println(per.getPersonInfo());
+}
+}
+
+
+//////////////////this表示当前对象
+class Person{
+public void print(){
+System.out.println("[PRINT]方法："+this);
+}
+}
+public class Test{
+public static void main(String[] args) {
+Person p1 = new Person();
+System.out.println("[MAIN]方法："+p1);
+p1.print();
+System.out.println("=================");
+Person p2 = new Person();
+System.out.println("[MAIN]方法："+p2);
+p2.print();
+}
+}
