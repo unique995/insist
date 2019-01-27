@@ -1,0 +1,63 @@
+abstract class CaffeineBeverage{   //////声明为抽象类的原因是其子类必须实现其操作
+    final void prepareRecipe(){
+        boilWater();
+        brew();
+        pourInCup();
+        if(customWantCondiments()){
+            addCondiments();
+        }
+    }
+    abstract void brew();          ///////具体操作延迟到子类中实现
+    abstract void addCondiments();
+    void boilWater(){
+        System.out.println("Boiling water");
+    }
+    void pourInCup(){
+        System.out.println("Pouring into cup");
+    }
+    boolean customWantCondiments(){   ////////钩子方法：超类中通常是默认实现，子类可以选择性的覆写此方法
+        return true;
+    }
+}
+class Tea extends CaffeineBeverage{
+    void brew(){
+        System.out.println("Steeping the tea");
+    }
+    void addCondiments(){
+        System.out.println("Adding Lemon");
+    }
+
+}
+class Coffee extends CaffeineBeverage{
+    void brew(){
+        System.out.println("Dripping Coffee through filter");
+    }
+    void addCondiments(){
+        System.out.println("Adding Sugar and Milk");
+    }
+    public boolean customerWantsCondiments(){    //////////子类覆写了钩子函数，实现自定义功能
+        String answer = getUserInput();
+        if(answer.equals("y")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public String getUserInput(){
+        String answer = null;
+        System.out.println("您想要在咖啡中加入牛奶或糖吗（y/n）?");
+        Scanner scanner = new Scanner(System.in);
+        answer = scanner.nextLine();
+        return answer;
+    }
+}
+public class Test{
+    public static void main(String[] args) {
+        CaffeineBeverage tea = new Tea();
+        CaffeineBeverage coffee = new Coffee();
+        System.out.println("\nMaking tea...");
+        tea.prepareRecipe();
+        System.out.println("\nMaking Coffee");
+        coffee.prepareRecipe();
+    }
+}
