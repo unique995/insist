@@ -1,0 +1,39 @@
+interface IComputer{
+    void printComputer();
+}
+class MacbookProComputer implements IComputer{
+    @Override
+    public void printComputer() {
+        System.out.println("This is a  MacbookPro");
+    }
+}
+class SurfaceBookComputer implements IComputer{
+    @Override
+    public void printComputer() {
+        System.out.println("This is a SurfaceBook");
+    }
+}
+class CmputerFactory{
+    public static IComputer getInstance(String type){
+        IComputer iComputer = null;
+        if(type.equals("macbook")){
+            iComputer = new MacbookProComputer();
+        }else if(type.equals("surface")){
+            iComputer = new SurfaceBookComputer();
+        }
+        return iComputer;
+    }
+}
+public class Test{
+    public void buyComputer(IComputer iComputer){
+        iComputer.printComputer();
+    }
+    public static void main(String[] args) {
+        Test test = new Test();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入您想要的电脑型号...");
+        String type = scanner.nextLine();
+        IComputer iComputer = CmputerFactory.getInstance(type);
+        test.buyComputer(iComputer);
+    }
+}
