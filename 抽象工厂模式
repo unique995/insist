@@ -1,0 +1,64 @@
+interface IComputer{
+    void printComputer();
+}
+class MacbookProComputer implements IComputer{
+    @Override
+    public void printComputer() {
+        System.out.println("This is a  MacbookPro");
+    }
+}
+class SurfaceBookComputer implements IComputer{
+    @Override
+    public void printComputer() {
+        System.out.println("This is a SurfaceBook");
+    }
+}
+interface OperatingSystem{
+    void printSystem();
+}
+class MacOsSystem implements OperatingSystem{
+    @Override
+    public void printSystem() {
+        System.out.println("This is a mac os");
+    }
+}
+class Windows8System implements OperatingSystem {
+    public void printSystem() {
+        System.out.println("This is a window 8");
+    }
+}
+interface ProductionFactory{
+   IComputer createComputer();
+   OperatingSystem createSystem();
+}
+class AppleFactory implements ProductionFactory{
+    public IComputer createComputer(){
+        return new MacbookProComputer();
+    }
+
+    @Override
+    public OperatingSystem createSystem() {
+        return new MacOsSystem();
+    }
+}
+class MsFactory implements ProductionFactory{
+    public IComputer createComputer(){
+        return new SurfaceBookComputer();
+    }
+    public OperatingSystem createSystem(){
+        return new Windows8System();
+    }
+}
+public class Test{
+    public void buyComputer(IComputer iComputer){
+        iComputer.printComputer();
+    }
+    public static void main(String[] args) {
+        Test test = new Test();
+        ProductionFactory factory = new AppleFactory();
+        IComputer iComputer = factory.createComputer();
+        OperatingSystem system = factory.createSystem();
+        test.buyComputer(iComputer);
+        test.buyComputer(factory.createComputer());
+    }
+}
