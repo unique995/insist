@@ -1,0 +1,38 @@
+interface IComputer{
+    void printComputer();
+}
+class MacbookProComputer implements IComputer{
+    @Override
+    public void printComputer() {
+        System.out.println("This is a  MacbookPro");
+    }
+}
+class SurfaceBookComputer implements IComputer{
+    @Override
+    public void printComputer() {
+        System.out.println("This is a SurfaceBook");
+    }
+}
+interface ComputerFactory{
+   IComputer createComputer();
+}
+class AppleFactory implements ComputerFactory{
+    public IComputer createComputer(){
+        return new MacbookProComputer();
+    }
+}
+class MsFactory implements ComputerFactory{
+    public IComputer createComputer(){
+        return new SurfaceBookComputer();
+    }
+}
+public class Test{
+    public void buyComputer(IComputer iComputer){
+        iComputer.printComputer();
+    }
+    public static void main(String[] args) {
+        Test test = new Test();
+        ComputerFactory factory = new AppleFactory();
+        test.buyComputer(factory.createComputer());
+    }
+}
