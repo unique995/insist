@@ -1,0 +1,10 @@
+String str = "helloworld" ;
+// 将字符串变为字符数组
+char[] data = str.toCharArray() ;
+for (int i = 0; i < data.length; i++) {
+data[i] -= 32 ;
+System.out.print(data[i]+"、");
+}
+// 字符数组转为字符串
+System.out.println(new String(data)); // 全部转换
+System.out.println(new String(data,5,5)); // 部分转换
