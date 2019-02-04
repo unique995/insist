@@ -1,0 +1,7 @@
+String str = "helloworld" ;
+byte[] data = str.getBytes() ;
+for (int i = 0; i < data.length; i++) {
+data[i] -= 32 ;
+System.out.print(data[i]+"、");
+}
+System.out.println(new String(data));
