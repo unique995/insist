@@ -1,0 +1,31 @@
+实现字符串的拆分处理
+String str = "hello world hello bit" ;
+String[] result = str.split(" ") ; // 按照空格拆分
+for(String s: result) {
+System.out.println(s);
+}
+
+
+
+字符串的部分拆分
+String str = "hello world hello bit" ;
+String[] result = str.split(" ",2) ;
+for(String s: result) {
+System.out.println(s);
+}
+
+
+拆分IP地址
+String str = "192.168.1.1" ;
+String[] result = str.split("\\.") ;
+for(String s: result) {
+System.out.println(s);
+}
+
+多次拆分
+String str = "yuisama:27|yui:25" ;
+String[] result = str.split("\\|") ;
+for (int i = 0; i < result.length; i++) {
+String[] temp = result[i].split(":") ;
+System.out.println(temp[0]+" = "+temp[1]);
+}
