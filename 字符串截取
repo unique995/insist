@@ -1,0 +1,22 @@
+ 字符串截取
+String str = "helloworld" ;
+System.out.println(str.substring(5));
+System.out.println(str.substring(0, 5));
+
+去掉字符串中的左右空格，保留中间空格
+String str = " hello world " ;
+System.out.println("["+str+"]");
+System.out.println("["+str.trim()+"]");
+
+
+大小写转换
+String str = " hello%$$%@#$%world 哈哈哈 " ;
+System.out.println(str.toUpperCase());
+System.out.println(str.toLowerCase());
+
+
+
+观察isEmpty()方法
+System.out.println("hello".isEmpty());
+System.out.println("".isEmpty());
+System.out.println(new String().isEmpty());
