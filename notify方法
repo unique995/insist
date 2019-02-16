@@ -1,0 +1,55 @@
+
+class MyThread implements Runnable{
+    //
+    private Object object;
+    private boolean flag;
+
+    public MyThread(Object object,boolean flag){
+        this.object = object;
+        this.flag = flag;
+    }
+    public void waitMethod(){
+        synchronized (object){
+            System.out.println("wait方法开始。。"+Thread.currentThread().getName());
+            try{
+                object.wait();
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            System.out.println("wait方法结束。。"+Thread.currentThread().getName());
+
+        }
+    }
+    public void notifyMethod(){
+        synchronized (object){
+            System.out.println("notify方法开始。。"+Thread.currentThread().getName());
+
+                object.notifyAll();
+
+            System.out.println("notify方法结束。。"+Thread.currentThread().getName());
+
+        }
+    }
+    public void run(){
+
+        if(flag){
+            this.waitMethod();
+        }else{
+            this.notifyMethod();
+        }
+    }
+}
+class Test{
+    public static void main(String[] args) {
+        Object object = new Object();
+       MyThread mythread = new MyThread(object,true);
+       for(int i =0;i<10;i++){
+           Thread thread1 = new Thread(mythread,"wait线程"+i);
+           thread1.start();
+       }
+
+       MyThread mythread2 = new MyThread(object,false);
+       Thread thread3 = new Thread(mythread2);
+       thread3.start();
+    }
+}
