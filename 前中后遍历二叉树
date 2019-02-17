@@ -1,0 +1,30 @@
+
+//前序
+void PreOrder(BTNode* Root)
+{
+	if(Root)
+	{
+		printf("%c ",Root->data);
+		PreOrder(Root->Left);
+		PreOrder(Root->Right);
+	}
+}
+//中序
+void InOrder(BTNode* Root)
+{
+	if(Root)
+	{
+		InOrder(Root->Left);
+		printf("%c ",Root->data);
+		InOrder(Root->Right);
+	}
+}
+//后序
+void PostOrder(BTNode* Root)
+{
+	if(Root)
+	{
+		PostOrder(Root->Left);
+		PostOrder(Root->Right);
+		printf("%c ",Root->data);
+	}
