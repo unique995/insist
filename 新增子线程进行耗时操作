@@ -1,0 +1,24 @@
+public class Review {
+    public static void main(String[] args) {
+        new Thread(()->{
+            File file = new File("C:"+File.separator+"Users"+
+                    File.separator+"Administrator"+
+                    File.separator+"Desktop");
+            listAllFile(file);
+        },"输出线程").start();
+        System.out.println("子线程开始执行...");
+    }
+    public static void listAllFile(File file){
+        if(file.isDirectory()){
+            File []arr = file.listFiles();
+            if(arr != null){
+                for (File file1:arr) {
+                    listAllFile(file1);
+              }
+            }
+        }else{
+            System.out.println(file);
+        }
+
+    }
+}
