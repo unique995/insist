@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+
+            File file = new File("C:"+File.separator+"Users"+
+                    File.separator+"Administrator"+
+                    File.separator+"Desktop"+File.separator+"java3.txt");
+            if(!file.getParentFile().exists()){
+                file.getParentFile().mkdirs();
+            }
+        OutputStream outputStream = new FileOutputStream(file);
+        Writer out = new OutputStreamWriter(outputStream);
+        String msg = "hello";
+        out.write(msg);
+        out.close();
+
+
+    }
