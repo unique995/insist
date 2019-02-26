@@ -1,0 +1,46 @@
+public static void SelectSort(int arr[]){
+        int i,j;
+        for(i = arr.length;i > 0;i--){  // i 表示数组的最后一个元素的位置，
+        //当把最大的元素放在该位置后，则 i--，往前走一步，即在剩下的元素中重复步骤
+            int max =  0;   // 表示最大元素
+            for(j = 0;j < i;j++){   从第一个开始遍历选择出最大的元素
+                if(arr[j]>arr[max]){
+                    max = j;
+                }
+            }
+//            Swap(arr[max],arr[i-1]);  //交换最大的元素，使其放在最后面
+            int temp = arr[max];
+            arr[max] = arr[i-1];
+            arr[i-1] = temp;
+        }
+   }
+   
+ 两边同时开始，往中间找；
+ 找到最小的放在左边，找到最大的放在右边
+public static void SelectSort(int arr[]){
+    int left = 0,right = arr.length-1;
+    while(left<right){  //表示元素还没有遍历完
+        int j;
+        int min = left,max = right;
+        for(j = left+1;j<=right;j++){
+            if (arr[j]>arr[max]){
+                max = j;
+            }
+            if (arr[j] < arr[min])
+            {
+                min = j;
+            }
+        }
+            int temp = arr[left];
+            arr[left] = arr[min];
+            arr[min] = temp;
+        if (max == left){
+            max = min;
+        }
+        int temp1 = arr[right];
+        arr[right] = arr[max];
+        arr[max] = temp1;
+        left++;
+        right--;
+    }
+}
