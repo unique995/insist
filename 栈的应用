@@ -1,0 +1,87 @@
+
+typedef int SDataType;
+#define MAXSIZE 10
+
+
+typedef struct Stack
+{
+	SDataType _array[MAXSIZE];
+	int _top;  //栈中元素的个数
+}Stack;
+
+
+void StackInit(Stack* s);
+void StackPush(Stack* s,SDataType data);
+void StackPop(Stack* s);
+SDataType StackTop(Stack* s);
+int StackSize(Stack* s);
+int StackEmpty(Stack* s);
+
+
+
+
+
+#include"Stack.h"
+
+
+void StackInit(Stack* s)
+{
+	assert(s);
+	s->_top = 0;
+}
+
+void StackPush(Stack* s,SDataType data)
+{
+	assert(s);
+	if(s->_top == MAXSIZE)
+		printf("栈空间已满！\n");
+	s->_array[s->_top++] = data;
+}
+
+void StackPop(Stack* s)
+{
+	assert(s);
+	if(StackEmpty(s))
+		return;
+	s->_top--;
+}
+SDataType StackTop(Stack* s)
+{
+	assert(s);
+	return s->_top;
+}
+int StackSize(Stack* s)
+{
+	assert(s);
+	return s->_top;
+}
+int StackEmpty(Stack* s)
+{
+	assert(s);
+	return 0 == s->_top;
+}
+
+
+#include"Stack.h"
+
+
+#if 0
+void test()
+{
+	Stack s;
+	StackInit(&s);
+	StackPush(&s,1);
+	StackPush(&s,2);
+	StackPush(&s,3);
+	StackPush(&s,4);
+	printf("size=%d\n",StackSize(&s));
+	printf("top=%d\n",StackTop(&s));
+	StackPop(&s);
+	printf("size=%d\n",StackSize(&s));
+	printf("top=%d\n",StackTop(&s));
+}
+
+#endif
+
+
+#if 0
