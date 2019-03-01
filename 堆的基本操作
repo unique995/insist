@@ -1,0 +1,178 @@
+void Swap(HDataType* left,HDataType* right)
+{
+	HDataType tmp;
+	assert(left && right);
+	tmp = *left;
+	*left = *right;
+	*right = tmp;
+}
+
+void AdjustUp(Heap* hp,int child)//向上调整
+{
+	int parent = (child-1)>>1;
+	assert(hp);
+	while(child)
+	{
+		if(hp->_hp[parent] > hp->_hp[child])
+	    {
+			Swap(&hp->_hp[parent],&hp->_hp[child]);
+			parent = child;
+			child = (parent<<1)+1;
+	    }
+	}
+}
+
+void AdjustDown(Heap* hp,int parent)//向下调整
+{
+	int child;
+	assert(hp);
+	//child标记最小的孩子，默认情况下左孩子比较小
+	child = (parent<<1)+1;
+
+	while(child < hp->_size)
+	{
+		//找左右孩子中最小的孩子
+		//必须保证右孩子存在
+		if(child+1 < hp->_size && hp->_hp[child] > hp->_hp[child+1])
+		child += 1;
+	//检测parent是否满足堆的性质
+	if(hp->_hp[parent] > hp->_hp[child])
+	{
+		Swap(&hp->_hp[parent],&hp->_hp[child]);
+		parent = child;
+		child = (parent<<1)+1;
+	}
+	else
+		return;
+	}
+}
+
+void CreateHeap(Heap* hp,HDataType* arr,int size)
+{
+	int root = ((size-1)-1)>>1;
+	assert(hp);
+	hp->_hp = (HDataType*)malloc(sizeof(HDataType)*size);
+	if(hp->_hp == 0)
+	{
+		assert(0);
+		return ;
+	}
+	hp->_capacity = 9;
+	memcpy(hp->_hp,arr,sizeof(HDataType)*size);
+	hp->_size = size;
+	//调整堆中的数据，让其满足堆的性质
+
+	for(;root >= 0;root--)
+	{
+		AdjustDown(hp,root);
+	}
+}
+void CheckCapacity(Heap* hp)
+{
+	int i = 0;
+	int NewCapacity;
+	HDataType* Tmp;
+	if(hp->_capacity == hp->_size)
+	{
+		NewCapacity = (hp->_capacity)<<1;
+		Tmp = (HDataType* )malloc(sizeof(HDataType)*NewCapacity);
+		if(Tmp == NULL)
+		{
+			assert(0);
+			return ;
+		}
+		if(Tmp)
+		{
+			for(i = 0;i < hp->_size;++i)
+			{
+				Tmp[i] = hp->_hp[i];
+			}
+			free(hp->_hp);
+		}
+		hp->_hp = Tmp;
+	    hp->_capacity = NewCapacity;
+	}
+}
+void InitHeap(Heap* hp)
+{
+	assert(hp);
+	hp->_hp = (HDataType*)malloc(sizeof(HDataType)*3);
+	if(hp->_hp == NULL)
+	{
+		assert(0);
+		return ;
+	}
+	hp->_capacity = 3;
+	hp->_size = 0;
+}
+void InsertHeap(Heap* hp,HDataType data)
+{
+	assert(hp);
+	CheckCapacity(hp);
+	hp->_hp[hp->_size++] = data;
+	AdjustUp(hp,hp->_size-1);
+}
+void RemoveHeap(Heap* hp)
+{
+	assert(hp);
+	if(EmptyHeap(hp))
+		return ;
+	Swap(&hp->_hp[0],&hp->_hp[hp->_size-1]);
+	hp->_size--;
+	AdjustDown(hp,0);
+}
+HDataType SizeHeap(Heap* hp)
+{
+	assert(hp);
+	return hp->_size;
+}
+HDataType EmptyHeap(Heap* hp)
+{
+	assert(hp);
+	return hp->_size == 0;
+}
+HDataType TopHeap(Heap* hp)
+{
+	assert(hp);
+	return hp->_hp[0];
+}
+void Destroy(Heap* hp)
+{
+	assert(hp);
+	free(hp->_hp);
+	hp->_hp = 0;
+	hp->_capacity = 0;
+	hp->_size = 0;
+}
+
+void Print(Heap* hp)
+{
+	int i = 0;
+	for(i=0;i<hp->_size;i++)
+	{
+		printf("%d ",hp->_hp[i]);
+	}
+
+}
+
+
+
+
+
+
+void test()
+{
+	Heap hp;
+	int arr[] = {53,17,78,9,45,65,87,23,31}; 
+	CreateHeap(&hp,arr,sizeof(arr)/sizeof(arr[0]));
+	Print(&hp);
+}
+int main()
+{
+	test();
+	system("pause");
+	return 0;
+}
+
+
+
