@@ -1,0 +1,39 @@
+void _QuickSort(int arr[], int left, int right)
+{
+    if (left == right){
+         return;//只有一个数，已经有序
+    }
+    if (left > right){
+         return;//没有数，不需要排序
+    }
+    int div = Partition_01(arr, left, right);//分成左右小区间[left,div-1];[div+1,right]
+    _QuickSort(arr, left, div - 1);
+    _QuickSort(arr, div + 1, right);
+    
+}
+void QuickSort(int arr[], int size)
+{
+    _QuickSort(arr, 0, size - 1);
+}
+1
+2
+ 比基准值小的放左，大的放右，有三种方式
+<1>.hover法  （左右指针）时间复杂度：O(n)
+int Partition_01(int arr[], int left, int right)
+{
+    int begin = left;//不是0
+    int end = right;//不是right-1
+    while (begin < end){
+         //如果基准值在最右边，想先动begin
+         //arr[begin]要<=不能<
+         while (begin<end && arr[begin] <= arr[right]){
+             begin++;
+         }
+         while (begin < end && arr[end] >= arr[right]){
+             end--;
+         }
+         Swap(arr + begin, arr + end);
+    }
+    Swap(arr + begin, arr + end);
+    return begin;
+}
