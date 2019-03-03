@@ -1,0 +1,23 @@
+挖坑法
+找个变量pivot存基准值，则需要交换的值的位置为坑，直接可以换过来
+begin，end对应的即为坑
+int Partition_02(int arr[], int left, int right)
+{
+         int begin = left;//不是0
+         int end = right;//不是right-1
+         int pivot = arr[right];//保存基准值
+         while (begin < end){
+             //如果基准值在最右边，想先动begin
+             //arr[begin]要<=不能<
+             while (begin<end && arr[begin] <= pivot){
+                 begin++;
+             }
+             arr[end] = arr[begin];
+             while (begin < end && arr[end] >= pivot){
+                 end--;
+             }
+             arr[begin] = arr[end];
+         }
+         arr[begin] = pivot;
+         return begin;
+}
