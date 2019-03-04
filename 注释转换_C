@@ -1,0 +1,193 @@
+#ifndef __COMMENT_CONVERT_H__
+#define __COMMENT_CONVERT_H__
+
+#include<stdio.h>
+#include<stdlib.h>
+
+enum State
+{
+	NUL_STATE,
+	C_STATE,
+	CPP_STATE,
+	END_STATE
+
+};
+
+void DoCommentConvert(FILE*pfIn,FILE*pfOut);
+void DoNulState(FILE*pfIn,FILE*pfOut,enum State *ps);
+void DoCState(FILE*pfIn,FILE*pfOut,enum State *ps);
+void DoCppState(FILE*pfIn,FILE*pfOut,enum State *ps);
+
+
+#endif
+
+
+#include"CommentConvert.h"
+
+void DoCommentConvert(FILE*pfIn, FILE*pfOut)
+{
+	enum State state = NUL_STATE;
+	while(state!=END_STATE)
+	{
+		switch(state)
+		{
+		case NUL_STATE:
+			DoNulState(pfIn,pfOut,&state);
+			break;
+		case C_STATE:
+			DoCState(pfIn,pfOut,&state);
+			break;
+		case CPP_STATE:
+			DoCppState(pfIn,pfOut,&state);
+			break;
+		}
+	}
+}
+void DoNulState(FILE*pfIn,FILE*pfOut,enum State *ps)
+{
+	int first = fgetc(pfIn);
+	switch(first)
+	{
+		case '/':
+			{
+				int second = fgetc(pfIn);
+				switch(second)
+				{
+				case'*':
+					{
+						fputc('/',pfOut);
+						fputc('/',pfOut);
+						*ps = C_STATE;
+					}
+					break;
+				case'/':
+					{
+						fputc(first,pfOut);
+						fputc(second,pfOut);
+						*ps = CPP_STATE;
+					}
+					break;
+				default:
+					{
+				 	    fputc(first,pfOut);
+				    	fputc(second,pfOut);
+					}
+					break;
+				}
+			}
+			break;
+		case EOF:
+			{
+				*ps = END_STATE;
+			}
+			break;
+		default:
+			{
+				fputc(first,pfOut);
+			}
+			break;
+	}
+}
+void DoCState(FILE*pfIn,FILE*pfOut,enum State *ps)
+{
+	int first = fgetc(pfIn);
+	switch(first)
+	{
+	case'*':
+		{
+			int second = fgetc(pfIn);
+			switch(second)
+			{
+			case'/':
+				{
+					*ps = NUL_STATE;
+					fputc('\n',pfOut);
+				}
+				break;
+			case'*':
+				{
+					fputc(first,pfOut);
+					ungetc(second,pfIn);
+				}
+				break;
+			default:
+				{
+                    fputc(first,pfOut);
+				    fputc(second,pfOut);
+				}
+				break;
+			}
+		}
+		break;
+		case '\n'://多行注释问题 
+            {
+                fputc(first, pfOut);
+                fputc('/', pfOut);
+                fputc('/', pfOut);
+            }
+            break;
+	   default:
+		fputc(first,pfOut);
+		break;
+
+	}
+}
+void DoCppState(FILE*pfIn,FILE*pfOut,enum State *ps)
+{
+	int ch = fgetc(pfIn);
+	switch(ch)
+	{
+	case'\n':
+		{
+           fputc(ch,pfOut);
+		   *ps = NUL_STATE;
+		}
+		break;
+	case EOF:
+		{
+			*ps = END_STATE;
+		}
+		break;
+	default:
+		{
+			fputc(ch,pfOut);
+		}
+		break;
+	}
+}
+
+
+#include"CommentConvert.h"
+
+
+void test()
+{
+	FILE*pfIn = NULL;
+	FILE*pfOut = NULL;
+	pfIn = fopen("input.c","r");
+	pfOut = fopen("output.c","w");
+	if(pfIn==NULL)
+	{
+		perror("read file error");
+		fclose(pfIn);
+		exit(EXIT_FAILURE);
+	}
+	if(pfOut==NULL)
+	{
+		perror("write file error");
+		fclose(pfIn);
+		exit(EXIT_FAILURE);
+	}
+	DoCommentConvert(pfIn,pfOut);
+	fclose(pfIn);
+	pfIn = NULL;
+	fclose(pfOut);
+	pfOut = NULL;
+	printf("转换成功\n");
+}
+int main()
+{
+	test();
+	system("pause");
+	return 0;
+}
