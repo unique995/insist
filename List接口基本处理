@@ -1,14 +1,14 @@
-public class Collect {
-    public static void main(String[] args) {
-       List<String> list = new ArrayList<>();
-        list.add("hello");
-        list.add("world");
-        list.add("hello");
-        System.out.println(list);
-        System.out.println(list.contains("world"));
-        System.out.println(list.remove("hello"));
-        list.clear();
-        System.out.println(list.size());
+ public class Collect {
+     public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+         list.add("hello");
+         list.add("world");
+         list.add("hello");
+         System.out.println(list);
+         System.out.println(list.contains("world"));
+         System.out.println(list.remove("hello"));
+         list.clear();
+         System.out.println(list.size());
       
       
       
