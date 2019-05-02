@@ -17,7 +17,7 @@ void QuickSort(int arr[], int size)
 }
 1
 2
- 比基准值小的放左，大的放右，有三种方式
+     比基准值小的放左，大的放右，有三种方式
 <1>.hover法  （左右指针）时间复杂度：O(n)
 int Partition_01(int arr[], int left, int right)
 {
