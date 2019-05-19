@@ -1,14 +1,18 @@
+队列是先进先出的数据结构
+Queue接口有一个子类LinkedList子类
+
 public class Test {
-public static void main(String[] args) {
-Queue<String> queue = new LinkedList<>() ;
-queue.add("A") ;
-queue.add("B") ;
-queue.add("C") ;
-System.out.println(queue.peek()) ;
-System.out.println(queue.poll()) ;
-System.out.println(queue.poll()) ;
-System.out.println(queue.poll()) ;
-// 取完数据继续poll返回null
-System.out.println(queue.poll()) ;
-}
+  public static void main(String[] args) {
+    Queue<String> queue = new LinkedList<>() ;
+    //入队
+    queue.add("A") ;
+    queue.add("B") ;
+    queue.add("C") ;
+    System.out.println(queue.peek()) ;//取队首元素
+    System.out.println(queue.poll()) ;//出队
+    System.out.println(queue.poll()) ;
+    System.out.println(queue.poll()) ;
+    // 取完数据继续poll返回null
+    System.out.println(queue.poll()) ;
+  }
 }
