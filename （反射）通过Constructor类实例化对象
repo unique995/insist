@@ -1,28 +1,29 @@
-class Person {IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException,
-InvocationTargetException {
-Class<?> cls = Person.class ;
-// 取得指定参数类型的构造方法对象
-Constructor<?> cons = cls.getConstructor(String.class,int.class) ;
-System.out.println(cons.newInstance("yuisama",29));
+“反”就是根据对象来取得对象的来源信息
+
+class Person {IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException,InvocationTargetException {
+  Class<?> cls = Person.class ;
+  // 取得指定参数类型的构造方法对象
+  Constructor<?> cons = cls.getConstructor(String.class,int.class) ;
+  System.out.println(cons.newInstance("yuisama",29));
+  }
 }
-}
-private String name ;
-private int age ;
-public Person(String name,int age) {
-this.name = name ;
-this.age = age ;
-}
-@Override
-public String toString() {
-return "Person [name=" + name + ", age=" + age + "]";
-}
-}
+  private String name ;
+  private int age ;
+  public Person(String name,int age) {
+    this.name = name ;
+    this.age = age ;
+  }
+  @Override
+  public String toString() {
+    return "Person [name=" + name + ", age=" + age + "]";
+    }
+  }
 public class Test {
-public static void main(String[] args) throws InstantiationException,IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException,
-InvocationTargetException {
-Class<?> cls = Person.class ;
-// 取得指定参数类型的构造方法对象
-Constructor<?> cons = cls.getConstructor(String.class,int.class) ;
-System.out.println(cons.newInstance("yuisama",29));
-}
+  public static void main(String[] args) throws InstantiationException,IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException,
+  InvocationTargetException {
+    Class<?> cls = Person.class ;
+    // 取得指定参数类型的构造方法对象
+    Constructor<?> cons = cls.getConstructor(String.class,int.class) ;
+      System.out.println(cons.newInstance("yuisama",29));
+  }
 }
