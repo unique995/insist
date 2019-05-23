@@ -1,10 +1,11 @@
+abstract关键字修饰的类称为抽象类，类内有抽象方法，只声明不实现。
+不能实例化对象，要子类向上转型
+
 abstract class Person{
     private String name;
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -12,7 +13,7 @@ abstract class Person{
     public abstract void fun();//抽象方法没有方法体
 }
 class Student extends Person{
-    public  void fun(){        //覆写抽象方法
+    public void fun(){        //覆写抽象方法
         System.out.println("I am a student");
     }
 }
