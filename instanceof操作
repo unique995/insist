@@ -1,3 +1,5 @@
+instanceof判断一个对象是否是一个具体类的实例，返回一个布尔值来指出
+
 class Person{
     public void print(){
         System.out.println("1.我是爸爸！");
