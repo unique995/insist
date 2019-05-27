@@ -1,0 +1,13 @@
+//饿汉式单例(不管用不用，一上来就产生)
+第一次使用要进行初始化操作，会有高的耗时；
+如果已知一个对象一定会使用到的话，可以采用饿汉式单例模式。
+静态变量随着类加载时被完成初始化的
+
+public class Singleton{
+    private static Singleton singleton = new Singleton();
+    private Singleton(){}
+    public static Singleton getSingleton(){
+        return singleton;
+    }
+}
+
