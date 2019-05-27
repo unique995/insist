@@ -1,0 +1,19 @@
+需要使用对象时，才创建对象
+懒汉式单例使用了双重校验锁，两次判断对象是否为空
+声明变量为static，并没有初始化，初始化在静态方法中，需要调用时才执行；
+
+
+public class Singleton{
+    private volatile static Singleton singleton;
+    private Singleton(){}
+    public static Singleton getSingleton(){
+        if (singleton == null){           //  只有在对象为空的情况下，再进行加锁创建对象，如果不为空，直接返回，大大提升了效率
+            synchronized (Singleton.class){
+                if (singleton == null){
+                    singleton = new Singleton();
+                }
+            }
+        }
+        return singleton;
+    }
+}
