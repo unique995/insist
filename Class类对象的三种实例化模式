@@ -1,15 +1,15 @@
 public static void main(String[] args) throws ClassNotFoundException {
-Class<?> cls = Class.forName("java.util.Date") ;
-System.out.println(cls.getName());
+  Class<?> cls = Class.forName("java.util.Date") ;
+  System.out.println(cls.getName());
 }
 
 
 
 public class Test {
-public static void main(String[] args) throws ClassNotFoundException,
-InstantiationException, IllegalAccessException {
-Class<?> cls = Class.forName("java.util.Date") ;
-Object obj = cls.newInstance() ; // 实例化对象，等价于 new java.util.Date() ;
-System.out.println(obj);
-}
+  public static void main(String[] args) throws ClassNotFoundException,
+    InstantiationException, IllegalAccessException {
+      Class<?> cls = Class.forName("java.util.Date") ;
+      Object obj = cls.newInstance() ; // 实例化对象，等价于 new java.util.Date() ;
+      System.out.println(obj);
+  }
 }
