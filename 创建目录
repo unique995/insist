@@ -1,6 +1,6 @@
 public class Test {
-public static void main(String[] args)throws Exception {
-File file = new File("C:\\Users\\Administrator" +
+  public static void main(String[] args)throws Exception {
+    File file = new File("C:\\Users\\Administrator" +
                 "\\Desktop\\Test\\test\\te.txt");
         if(!file.getParentFile().exists()){
             file.getParentFile().mkdirs();
