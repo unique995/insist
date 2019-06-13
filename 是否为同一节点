@@ -1,5 +1,4 @@
 public static boolean IsPoint(ListNode first,ListNode head){
-        
         ListNode forward = first;
         ListNode backward = head;
         if((first == null)||(head == null)){
