@@ -1,17 +1,21 @@
 Collections工具类：在Collections工具类中很多方法是用于对集合进行操作的，如比较，查找，随机排序等等
+
 1、查找：
-T max(Collection<? extends T> coll)    --->    根据集合的自然顺序，获取coll集合中的最大元素
-T max(Collection<? extends T> coll,Comparator<? super T> comp)    --->   根据指定比较器comp的顺序，获取coll集合中的最大元素
-int binarySearch(Lsit<? extends Comparable<? super T>> list,Tkey)    --->   二分法搜索list集合中的指定对象
+T max(Collection<? extends T> coll)                                      --->    根据集合的自然顺序，获取coll集合中的最大元素
+T max(Collection<? extends T> coll,Comparator<? super T> comp)           --->   根据指定比较器comp的顺序，获取coll集合中的最大元素
+int binarySearch(Lsit<? extends Comparable<? super T>> list,Tkey)        --->   二分法搜索list集合中的指定对象
+
 2、替换：
-void fill(List<? super T> list, T obj)        --->   将list集合中的全部元素替换成指定对象obj
-boolean replaceAll(List<T> lsit,T oldVal,T newVal)     --->   使用newVal替换list集合中的oldVal值
+void fill(List<? super T> list, T obj)                   --->   将list集合中的全部元素替换成指定对象obj
+boolean replaceAll(List<T> lsit,T oldVal,T newVal)       --->   使用newVal替换list集合中的oldVal值
+
 3、排序：
-void shuffle(List<?> list)     --->   使用默认随机源对list集合中的元素进行随机排序
-void sort(Lsit<T> list)          --->   根据自然顺序对list集合中的元素进行排序
-void sort(List<T> lsit,Comparator<? super T> c)     --->   根据指定比较器c的排序方式对list集合进行排序
+void shuffle(List<?> list)                         --->   使用默认随机源对list集合中的元素进行随机排序
+void sort(Lsit<T> list)                            --->   根据自然顺序对list集合中的元素进行排序
+void sort(List<T> lsit,Comparator<? super T> c)    --->   根据指定比较器c的排序方式对list集合进行排序
+
 4、反转
-reverse(List<?> list)     --->   反转list集合中元素的顺序
+reverse(List<?> list)         --->   反转list集合中元素的顺序
 Comparator reverseOrder()     --->   返回一个比较器，强行逆转了实现Comparable接口的对象的自然顺序
 
 public static void main(String[] args) {
