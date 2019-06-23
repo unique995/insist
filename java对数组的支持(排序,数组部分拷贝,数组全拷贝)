@@ -5,12 +5,18 @@
 //        for (int t:x) {
 //            System.out.println(t);
 //        }
+
+
+
 // =====================================
 //        System.arraycopy(x,1,y,0,2);
 //        for (int a:y) {
 //            System.out.println(a);
 //        }
 // =====================================
+
+
+
        int z[] =  Arrays.copyOf(x,5);
         for (int c:z) {
             System.out.println(c);
