@@ -1,3 +1,5 @@
+内部类的操作
+
 class Outer{
   private String msg = "Hello World" ;
   public String getMsg(){ //通过此方法才能取得msg属性
