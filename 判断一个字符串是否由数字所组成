@@ -1,3 +1,6 @@
+
+判断一个字符串是否由数字所组成
+
 public static void main(String[] args) {
   String str = "1a23456" ;
   System.out.println(isNumber(str)? "字符串由数字所组成！" : "字符串中有非数字成员！");
