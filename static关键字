@@ -1,4 +1,6 @@
-///////////////////////////static属性
+可以用类名直接调用，也可以实例化调用
+///////////////////////////
+static属性
 
 class Person{
   static String Country = "中国";
@@ -21,7 +23,9 @@ public class Test{
   }
 }
 
-////////////////////////static方法
+////////////////////////
+static方法
+
 class Person{
   private static String country;
   private String name;
