@@ -1,16 +1,20 @@
+泛型类：在类定义的时候，并不会设置类中的属性或参数的具体类型，在使用时才定义。
+泛型类和泛型方法可以共存，两者的类型参数没有关系，也不同名；
+泛型方法总是以自己定义的类型参数为准。
+
 class MyClass<T>{
-public void testMethod1(T t) {
-System.out.println(t);
-}
-public <T> T testMethod2(T t) {
-return t;
-}
+  public void testMethod1(T t) {
+    System.out.println(t);
+  }
+  public <T> T testMethod2(T t) {  // <T>只是声明该方法是一个泛型方法
+    return t;
+  }
 }
 public class Test {
-public static void main(String[] args) {
-MyClass<String> myClass = new MyClass<>();
-myClass.testMethod1("hello 泛型类");
-Integer i = myClass.testMethod2(100);
-System.out.println(i);
-}
+  public static void main(String[] args) {
+    MyClass<String> myClass = new MyClass<>();  // 在类使用的时候，设置为String类型
+    myClass.testMethod1("hello 泛型类");
+    Integer i = myClass.testMethod2(100);  // 泛型方法定义为Integer型
+    System.out.println(i);
+  }
 }
