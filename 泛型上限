@@ -1,22 +1,26 @@
+上限只能取得类中属性值，不能修改值；
+父类到子类向下转型，由于具体子类不确定，因此无法转型
+
 class Message<T extends Number> { 
-// 设置泛型上限 
-private T message ; 
-public T getMessage() { 
-return message; 
+   // 设置泛型上限 
+  private T message ; 
+  public T getMessage() { 
+    return message; 
+  }
+  public void setMessage(T message) { 
+    this.message = message;
+  } 
 }
-public void setMessage(T message) { 
-this.message = message;
-} 
-}
-public class TestDemo { 
-public static void main(String[] args) { 
-Message<Integer> message = new Message() ;
-message.setMessage(55);
-fun(message);
-}
-// 此时使用通配符"?"描述的是它可以接收任意类型，但是由于不确定类型，所以无法修改 
-public static void fun(Message<? extends Number> temp){ 
-//temp.setMessage(100); 仍然无法修改！ 
-System.out.println(temp.getMessage());
-} 
-}
+
+  public class TestDemo { 
+    public static void main(String[] args) { 
+      Message<Integer> message = new Message() ;
+      message.setMessage(55);
+      fun(message);
+    }
+    // 此时使用通配符"?"描述的是它可以接收任意类型，但是由于不确定类型，所以无法修改 
+    public static void fun(Message<? extends Number> temp){ 
+      //temp.setMessage(100); 仍然无法修改！ 
+      System.out.println(temp.getMessage());
+    } 
+  }
