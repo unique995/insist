@@ -1,4 +1,4 @@
-
+列举一个目录的全部组成
 
 public static void main(String[] args) {
   //取得File对象
