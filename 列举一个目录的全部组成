@@ -1,18 +1,20 @@
+
+
 public static void main(String[] args) {
-//取得File对象
-File file = new File("C:\\Users\\Administrator\\Desktop");
-long start = System.currentTimeMillis();
-listAllFiles(file);
-long end = System.currentTimeMillis();
-System.out.println("遍历结束"+(end-start));
+  //取得File对象
+  File file = new File("C:\\Users\\Administrator\\Desktop");
+  long start = System.currentTimeMillis();
+  listAllFiles(file);
+  long end = System.currentTimeMillis();
+  System.out.println("遍历结束"+(end-start));
 }
 public static void listAllFiles(File file){
-if(file.exists()&&file.isFile()){
-System.out.println(file);
-}else{
-File []files = file.listFiles();
-for(File file1:files){
-listAllFiles(file1);
-}
-}
+  if(file.exists()&&file.isFile()){
+    System.out.println(file);
+  }else{
+    File []files = file.listFiles();
+    for(File file1:files){
+      listAllFiles(file1);
+    }
+  }
 }
