@@ -1,3 +1,5 @@
+单线程StackOverFlow异常
+
 public class Test {
   private int stackLength = 1;
   public void stackLeak() {
