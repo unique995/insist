@@ -1,16 +1,16 @@
 public class Test {
-private int stackLength = 1;
-public void stackLeak() {
-stackLength++;
-stackLeak();
-}
-public static void main(String[] args) {
-Test test = new Test();
-try {
-test.stackLeak();
-} catch (Throwable e) {
-System.out.println("Stack Length: "+test.stackLength);
-throw e;
-}
-}
+  private int stackLength = 1;
+  public void stackLeak() {
+    stackLength++;
+    stackLeak();
+  }
+  public static void main(String[] args) {
+    Test test = new Test();
+    try {
+      test.stackLeak();
+    } catch (Throwable e) {
+      System.out.println("Stack Length: "+test.stackLength);
+      throw e;
+    }
+   }
 }
