@@ -16,7 +16,6 @@ public  class Test{
                     return c;
                 }
             }
-
         }
         return '0';
     }
